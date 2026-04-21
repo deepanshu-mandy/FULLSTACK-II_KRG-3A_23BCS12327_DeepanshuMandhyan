@@ -9,9 +9,14 @@ import com.ecotrack.livepoll.repository.PollOptionRepository;
 import com.ecotrack.livepoll.repository.PollRepository;
 import com.ecotrack.livepoll.repository.UserRepository;
 import com.ecotrack.livepoll.repository.VoteRepository;
+<<<<<<< HEAD
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+=======
+import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
 
 import java.util.List;
 
@@ -33,6 +38,7 @@ public class PollService {
         this.userRepository = userRepository;
     }
 
+<<<<<<< HEAD
     @Transactional(readOnly = true)
     public List<PollDtos.PollResponse> getAllPolls() {
         return pollRepository.findAllWithOptionsOrderByCreatedAtDesc().stream().map(this::mapPoll).toList();
@@ -41,6 +47,14 @@ public class PollService {
     @Transactional(readOnly = true)
     public PollDtos.PollResponse getPollById(Long id) {
         Poll poll = pollRepository.findWithOptionsById(id)
+=======
+    public List<PollDtos.PollResponse> getAllPolls() {
+        return pollRepository.findAll().stream().map(this::mapPoll).toList();
+    }
+
+    public PollDtos.PollResponse getPollById(Long id) {
+        Poll poll = pollRepository.findById(id)
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
                 .orElseThrow(() -> new IllegalArgumentException("Poll not found"));
         return mapPoll(poll);
     }
@@ -67,7 +81,11 @@ public class PollService {
 
     @Transactional
     public PollDtos.PollResponse vote(Long pollId, Long optionId, String voterEmail) {
+<<<<<<< HEAD
         Poll poll = pollRepository.findWithOptionsById(pollId)
+=======
+        Poll poll = pollRepository.findById(pollId)
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
                 .orElseThrow(() -> new IllegalArgumentException("Poll not found"));
 
         if (poll.isClosed()) {
@@ -81,6 +99,7 @@ public class PollService {
             throw new IllegalStateException("You have already voted on this poll");
         }
 
+<<<<<<< HEAD
         int rowsUpdated = pollOptionRepository.incrementVoteCount(pollId, optionId);
         if (rowsUpdated == 0) {
             throw new IllegalArgumentException("Option does not belong to this poll");
@@ -98,11 +117,34 @@ public class PollService {
         }
 
         return mapPoll(pollRepository.findWithOptionsById(pollId).orElseThrow());
+=======
+        PollOption option = pollOptionRepository.findById(optionId)
+                .orElseThrow(() -> new IllegalArgumentException("Poll option not found"));
+
+        if (!option.getPoll().getId().equals(pollId)) {
+            throw new IllegalArgumentException("Option does not belong to this poll");
+        }
+
+        option.setVoteCount(option.getVoteCount() + 1);
+        pollOptionRepository.save(option);
+
+        Vote vote = new Vote();
+        vote.setPoll(poll);
+        vote.setUser(voter);
+        vote.setSelectedOptionId(option.getId());
+        voteRepository.save(vote);
+
+        return mapPoll(pollRepository.findById(pollId).orElseThrow());
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
     }
 
     @Transactional
     public PollDtos.PollResponse closePoll(Long pollId) {
+<<<<<<< HEAD
         Poll poll = pollRepository.findWithOptionsById(pollId)
+=======
+        Poll poll = pollRepository.findById(pollId)
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
                 .orElseThrow(() -> new IllegalArgumentException("Poll not found"));
         poll.setClosed(true);
         return mapPoll(pollRepository.save(poll));

@@ -5,7 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+<<<<<<< HEAD
 import jakarta.persistence.Index;
+=======
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -14,11 +17,14 @@ import jakarta.persistence.UniqueConstraint;
 @Entity
 @Table(
         name = "votes",
+<<<<<<< HEAD
     indexes = {
         @Index(name = "idx_votes_poll_id", columnList = "poll_id"),
         @Index(name = "idx_votes_user_id", columnList = "user_id"),
         @Index(name = "idx_votes_selected_option", columnList = "selected_option_id")
     },
+=======
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
         uniqueConstraints = @UniqueConstraint(columnNames = {"poll_id", "user_id"})
 )
 public class Vote {

@@ -7,7 +7,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+<<<<<<< HEAD
 import jakarta.persistence.Index;
+=======
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
 import jakarta.persistence.Table;
 
 import java.time.Instant;
@@ -15,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+<<<<<<< HEAD
 @Table(
     name = "polls",
     indexes = {
@@ -22,6 +26,9 @@ import java.util.List;
         @Index(name = "idx_polls_closed", columnList = "closed")
     }
 )
+=======
+@Table(name = "polls")
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
 public class Poll {
 
     @Id
@@ -31,10 +38,17 @@ public class Poll {
     @Column(nullable = false)
     private String question;
 
+<<<<<<< HEAD
     @Column(name = "created_at", nullable = false)
     private Instant createdAt = Instant.now();
 
     @Column(name = "created_by", nullable = false)
+=======
+    @Column(nullable = false)
+    private Instant createdAt = Instant.now();
+
+    @Column(nullable = false)
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
     private String createdBy;
 
     @Column(nullable = false)

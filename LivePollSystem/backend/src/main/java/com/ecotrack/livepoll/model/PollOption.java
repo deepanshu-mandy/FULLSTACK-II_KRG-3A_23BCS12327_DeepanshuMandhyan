@@ -5,18 +5,25 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+<<<<<<< HEAD
 import jakarta.persistence.Index;
+=======
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
+<<<<<<< HEAD
 @Table(
     name = "poll_options",
     indexes = {
         @Index(name = "idx_poll_options_poll_id", columnList = "poll_id")
     }
 )
+=======
+@Table(name = "poll_options")
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
 public class PollOption {
 
     @Id

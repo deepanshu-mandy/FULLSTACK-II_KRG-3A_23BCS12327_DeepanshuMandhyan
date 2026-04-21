@@ -15,7 +15,11 @@
     <artifactId>livepoll-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>livepoll-backend</name>
+<<<<<<< HEAD
     <description>Experiment 9 - Secure and Scalable Full-Stack System</description>
+=======
+    <description>Experiment 8 - App Security and Full-Stack Integration</description>
+>>>>>>> 94d6c1103cc8c97acaec5adb3a316a5ffb4f5fc5
 
     <properties>
         <java.version>17</java.version>
